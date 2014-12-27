@@ -12,8 +12,8 @@
     "src",
     "test",
     "gulpfile.js",
-    "karma-dist-concatenated.js",
-    "karma-dist-minified.js",
+    "karma-dist-concatenated.conf.js",
+    "karma-dist-minified.conf.js",
     "**/.*"
   ],
   "dependencies": {
