@@ -4,6 +4,7 @@ Dynamically update meta tags from within your markup in your AngularJS applicati
 
 [![Build Status](https://travis-ci.org/jvandemo/angular-update-meta.svg?branch=master)](https://travis-ci.org/jvandemo/angular-update-meta)
 
+- lightweight (< 1KB)
 - uses original meta syntax
 - supports prerender.io for SEO purposes
 - update your meta tags depending on the state your application is in
