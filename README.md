@@ -1,6 +1,6 @@
 # Update meta tags in AngularJS
 
-Dynamically update meta tags from within your markup in your AngularJS application.
+Dynamically update meta tags for SEO purposes in your AngularJS application. 
 
 [![Build Status](https://travis-ci.org/jvandemo/angular-update-meta.svg?branch=master)](https://travis-ci.org/jvandemo/angular-update-meta)
 
