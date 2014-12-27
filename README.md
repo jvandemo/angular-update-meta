@@ -24,17 +24,38 @@ then add the `updateMeta` module to the dependencies of your AngularJS applicati
 angular.module('yourApp', ['updateMeta']);
 ```
 
+Suppose you have the following markup in your template:
+
+```xml
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="description" content="Some description" />
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+```
+
 Now you can use the following markup in your view(s):
  
 ```xml
-<update-meta name="description" content="Meta description in head will now be updated with this string"></update-meta>
-<update-meta http-equiv="content-type" content="text/some-content-type"></update-meta>
-<update-meta charset="some-charset"></update-meta>
+<update-meta charset="some-other-charset"></update-meta>
+<update-meta name="description" content="A difference description"></update-meta>
+<update-meta http-equiv="Content-Language" content="es"></update-meta>
 ```
 
 Only **existing** meta elements are updated.
 
-If they don't exist yet, they are **NOT** added, so make sure they exist in your original `head` element.
+If the meta element does not exist yet, it is **NOT** added, so make sure they exist in your original `head` element.
+
+Whenever an `update-meta` element is processed, the original `meta` in the head is updated.
+
+This allows you to dynamically set the `meta` element values with values from within your markup and child states.
+
+> Prerender.io will then grab the updated values and store them in your page snapshots so they are optimized for SEO purposes.
 
 ## Contribute
 
