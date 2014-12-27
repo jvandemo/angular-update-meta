@@ -31,7 +31,7 @@ Suppose you have the following markup in your template:
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Language" content="en" />
-    <meta name="description" content="Some description" />
+    <meta name="description" content="Application wide description" />
   </head>
   <body>
     ...
@@ -42,20 +42,26 @@ Suppose you have the following markup in your template:
 Now you can use the following markup in your view(s):
  
 ```xml
-<update-meta charset="some-other-charset"></update-meta>
-<update-meta name="description" content="A difference description"></update-meta>
+<update-meta charset="ISO-8859-1"></update-meta>
 <update-meta http-equiv="Content-Language" content="es"></update-meta>
+<update-meta name="description" content="A page specific description"></update-meta>
 ```
 
 Only **existing** meta elements are updated.
 
 If the meta element does not exist yet, it is **NOT** added, so make sure they exist in your original `head` element.
 
-Whenever an `update-meta` element is processed, the original `meta` in the head is updated.
+Whenever an `update-meta` element is processed, the original `meta` in the head is updated with the new value.
 
 This allows you to dynamically set the `meta` element values with values from within your markup and child states.
 
-> Prerender.io will then grab the updated values and store them in your page snapshots so they are optimized for SEO purposes.
+### Prerender.io
+
+Prerender.io will grab the updated values and store them in your page snapshots so they are optimized for SEO purposes.
+
+This allows you to conveniently update the `meta` elements for each individual page in your AngularJS single page application and store them correctly in your Prerender page snapshots.
+
+You can preview the prerender output by using the `_escaped_fragment_=` parameter as described [in the prerender.io documentation](https://prerender.io/documentation).
 
 ## Contribute
 
