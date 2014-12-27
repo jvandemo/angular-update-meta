@@ -52,6 +52,10 @@ $ gulp test
 
 ## Change log
 
+### v1.2.0
+
+- update bower ignore files
+
 ### v1.1.0
 
 - add travis support

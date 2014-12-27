@@ -1,6 +1,6 @@
 {
   "name": "angular-update-meta",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "authors": [
     {
       "name": "Jurgen Van de Moere",
@@ -11,7 +11,9 @@
   "ignore": [
     "src",
     "test",
-    "Gruntfile.js",
+    "gulpfile.js",
+    "karma-dist-concatenated.js",
+    "karma-dist-minified.js",
     "**/.*"
   ],
   "dependencies": {
