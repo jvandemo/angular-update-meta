@@ -7,6 +7,15 @@
       "email": "jurgen.van.de.moere@gmail.com"
     }
   ],
+  "keywords": [
+    "angular",
+    "angularjs",
+    "seo",
+    "prerender",
+    "prerender.io",
+    "meta",
+    "head"
+  ],
   "main": ["dist/update-meta.js"],
   "ignore": [
     "src",
