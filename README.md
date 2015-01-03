@@ -47,6 +47,21 @@ Now you can use the following markup in your view(s):
 <update-meta name="description" content="A page specific description"></update-meta>
 ```
 
+So the head is updated to:
+
+```xml
+<html>
+  <head>
+    <meta charset="ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="es" />
+    <meta name="description" content="A page specific description" />
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+```
+
 Only **existing** meta elements are updated.
 
 If the meta element does not exist yet, it is **NOT** added, so make sure they exist in your original `head` element.
