@@ -5,6 +5,9 @@
     "name": "Jurgen Van de Moere",
     "email": "jurgen.van.de.moere@gmail.com"
   },
+  "scripts": {
+    "test": "gulp test-dist-minified"
+  },
   "dependencies": {},
   "devDependencies": {
     "chai": "^1.9.1",
