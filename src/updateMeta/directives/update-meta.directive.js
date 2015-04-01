@@ -15,7 +15,8 @@
         name: '@',
         content: '@',
         httpEquiv: '@',
-        scheme: '@'
+        scheme: '@',
+        title: '@'
       },
       link: function(scope, iElem, iAttrs){
 
@@ -32,6 +33,10 @@
         if(scope.charset){
           angular.element('meta[charset]').attr('charset', scope.charset);
           return;
+        }
+
+        if(scope.title){
+          angular.element('title').text(scope.title);
         }
 
       }
