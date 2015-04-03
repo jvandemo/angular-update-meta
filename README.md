@@ -29,6 +29,7 @@ Suppose you have the following markup in your template:
 ```xml
 <html>
   <head>
+    <title>Cool Title</title>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Language" content="en" />
     <meta name="description" content="Application wide description" />
@@ -42,6 +43,7 @@ Suppose you have the following markup in your template:
 Now you can use the following markup in your view(s):
  
 ```xml
+<update-meta title="Newer Cooler Title"></update-meta>
 <update-meta charset="ISO-8859-1"></update-meta>
 <update-meta http-equiv="Content-Language" content="es"></update-meta>
 <update-meta name="description" content="A page specific description"></update-meta>
@@ -52,6 +54,7 @@ So the head is updated to:
 ```xml
 <html>
   <head>
+    <title>Newer Cooler Title</title>
     <meta charset="ISO-8859-1" />
     <meta http-equiv="Content-Language" content="es" />
     <meta name="description" content="A page specific description" />
