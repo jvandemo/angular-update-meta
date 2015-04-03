@@ -36,7 +36,8 @@
         }
 
         if(scope.title){
-          angular.element('title').text(scope.title);
+          angular.element(document.querySelector('title')).text(scope.title);
+          return;
         }
 
       }
