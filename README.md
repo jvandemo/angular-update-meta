@@ -97,6 +97,9 @@ $ gulp test
 
 ## Change log
 
+### v1.2.2
+- add title changing capabilities
+
 ### v1.2.1
 
 - fix bower ignore files
