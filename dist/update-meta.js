@@ -22,7 +22,8 @@ angular.module('updateMeta', []);
         name: '@',
         content: '@',
         httpEquiv: '@',
-        scheme: '@'
+        scheme: '@',
+        title: '@'
       },
       link: function(scope, iElem, iAttrs){
 
@@ -38,6 +39,11 @@ angular.module('updateMeta', []);
 
         if(scope.charset){
           angular.element('meta[charset]').attr('charset', scope.charset);
+          return;
+        }
+
+        if(scope.title){
+          angular.element(document.querySelector('title')).text(scope.title);
           return;
         }
 
