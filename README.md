@@ -94,6 +94,10 @@ $ gulp test
 
 ## Change log
 
+### v1.3.0
+
+- added double quotes to support #2
+
 ### v1.2.1
 
 - fix bower ignore files
