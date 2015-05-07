@@ -20,7 +20,7 @@
       link: function(scope, iElem, iAttrs){
 
         if(scope.name && scope.content){
-          angular.element('meta[name=' + scope.name + ']').attr('content', scope.content);
+          angular.element('meta[name="' + scope.name + '"]').attr('content', scope.content);
           return;
         }
 
