@@ -7,6 +7,7 @@ Dynamically update meta tags for SEO purposes in your AngularJS application.
 - lightweight (< 1KB)
 - uses original meta syntax
 - supports prerender.io for SEO purposes
+- supports [Open Graph protocol](http://ogp.me/) meta elements
 - update your meta tags depending on the state your application is in
 - no additional scripting required, works out-of-the-box!
 
@@ -32,6 +33,7 @@ Suppose you have the following markup in your template:
     <meta charset="utf-8" />
     <meta http-equiv="Content-Language" content="en" />
     <meta name="description" content="Application wide description" />
+    <meta property="og:title" content="The Rock" />
   </head>
   <body>
     ...
@@ -45,6 +47,7 @@ Now you can use the following markup in your view(s):
 <update-meta charset="ISO-8859-1"></update-meta>
 <update-meta http-equiv="Content-Language" content="es"></update-meta>
 <update-meta name="description" content="A page specific description"></update-meta>
+<update-meta property="og:title" content="Minions"></update-meta>
 ```
 
 So the head is updated to:
@@ -55,6 +58,7 @@ So the head is updated to:
     <meta charset="ISO-8859-1" />
     <meta http-equiv="Content-Language" content="es" />
     <meta name="description" content="A page specific description" />
+    <meta property="og:title" content="Minions" />
   </head>
   <body>
     ...
@@ -93,6 +97,10 @@ $ gulp test
 ```
 
 ## Change log
+
+### v1.5.0
+
+- added support for meta `property` elements to support the [Open Graph protocol](http://ogp.me/)
 
 ### v1.4.0
 

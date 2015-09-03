@@ -35,25 +35,28 @@ angular.module('updateMeta', []);
         name: '@',
         content: '@',
         httpEquiv: '@',
-        scheme: '@'
+        scheme: '@',
+        property: '@'
       },
       link: function(scope, iElem, iAttrs){
 
         if(scope.name && scope.content){
           updateAttribute('meta[name="' + scope.name + '"]', 'content', scope.content);
-          //angular.element('meta[name="' + scope.name + '"]').attr('content', scope.content);
           return;
         }
 
         if(scope.httpEquiv && scope.content){
-          updateAttribute('meta[httpEquiv=' + scope.name + ']', 'content', scope.content);
-          // angular.element('meta[httpEquiv=' + scope.name + ']').attr('content', scope.content);
+          updateAttribute('meta[httpEquiv="' + scope.name + '"]', 'content', scope.content);
+          return;
+        }
+
+        if(scope.property && scope.content){
+          updateAttribute('meta[property="' + scope.name + '"]', 'content', scope.content);
           return;
         }
 
         if(scope.charset){
           updateAttribute('meta[charset]', 'charset', scope.charset);
-          // angular.element('meta[charset]').attr('charset', scope.charset);
           return;
         }
 
