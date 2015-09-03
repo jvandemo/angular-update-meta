@@ -98,6 +98,12 @@ $ gulp test
 
 ## Change log
 
+### v1.5.1
+
+- fixed issue with `http-equiv`
+- updated documentation
+- updated example
+
 ### v1.5.0
 
 - added support for meta `property` elements to support the [Open Graph protocol](http://ogp.me/)

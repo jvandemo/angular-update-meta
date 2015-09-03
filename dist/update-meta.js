@@ -14,16 +14,15 @@ angular.module('updateMeta', []);
    *
    * @constructor
    */
-  function UpdateMetaDirective(){
+  function UpdateMetaDirective($log){
 
     function updateAttribute(selector, attributeName, attributeValue){
       if(!document){
         return;
       }
       var el = document.querySelector(selector);
-      console.log(el);
       if(el && el.setAttribute){
-        console.log('Setting attribute ' + attributeName + ' to ' + attributeValue);
+        $log.debug('updateMeta - set attribute ' + attributeName + ' of ' + selector + ' to ' + attributeValue);
         el.setAttribute(attributeName, attributeValue);
       }
     }
@@ -46,12 +45,12 @@ angular.module('updateMeta', []);
         }
 
         if(scope.httpEquiv && scope.content){
-          updateAttribute('meta[httpEquiv="' + scope.name + '"]', 'content', scope.content);
+          updateAttribute('meta[http-equiv="' + scope.httpEquiv + '"]', 'content', scope.content);
           return;
         }
 
         if(scope.property && scope.content){
-          updateAttribute('meta[property="' + scope.name + '"]', 'content', scope.content);
+          updateAttribute('meta[property="' + scope.property + '"]', 'content', scope.content);
           return;
         }
 
@@ -65,7 +64,7 @@ angular.module('updateMeta', []);
   }
 
   // Inject dependencies
-  UpdateMetaDirective.$inject = [];
+  UpdateMetaDirective.$inject = ['$log'];
 
   // Export
   angular
