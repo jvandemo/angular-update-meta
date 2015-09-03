@@ -1,0 +1,17 @@
+<html ng-app="app">
+<head>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../dist/update-meta.js"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Language" content="en" />
+  <meta name="description" content="Application wide description" />
+  <script>
+    angular.module('app', ['updateMeta']);
+  </script>
+</head>
+<body>
+  <update-meta charset="ISO-8859-1"></update-meta>
+  <update-meta http-equiv="Content-Language" content="es"></update-meta>
+  <update-meta name="description" content="A page specific description"></update-meta>
+</body>
+</html>

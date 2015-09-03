@@ -8,6 +8,19 @@
    * @constructor
    */
   function UpdateMetaDirective(){
+
+    function updateAttribute(selector, attributeName, attributeValue){
+      if(!document){
+        return;
+      }
+      var el = document.querySelector(selector);
+      console.log(el);
+      if(el && el.setAttribute){
+        console.log('Setting attribute ' + attributeName + ' to ' + attributeValue);
+        el.setAttribute(attributeName, attributeValue);
+      }
+    }
+
     return {
       restrict: 'E',
       scope: {
@@ -20,17 +33,20 @@
       link: function(scope, iElem, iAttrs){
 
         if(scope.name && scope.content){
-          angular.element('meta[name="' + scope.name + '"]').attr('content', scope.content);
+          updateAttribute('meta[name="' + scope.name + '"]', 'content', scope.content);
+          //angular.element('meta[name="' + scope.name + '"]').attr('content', scope.content);
           return;
         }
 
         if(scope.httpEquiv && scope.content){
-          angular.element('meta[httpEquiv=' + scope.name + ']').attr('content', scope.content);
+          updateAttribute('meta[httpEquiv=' + scope.name + ']', 'content', scope.content);
+          // angular.element('meta[httpEquiv=' + scope.name + ']').attr('content', scope.content);
           return;
         }
 
         if(scope.charset){
-          angular.element('meta[charset]').attr('charset', scope.charset);
+          updateAttribute('meta[charset]', 'charset', scope.charset);
+          // angular.element('meta[charset]').attr('charset', scope.charset);
           return;
         }
 

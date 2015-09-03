@@ -94,6 +94,10 @@ $ gulp test
 
 ## Change log
 
+### v1.4.0
+
+- switch to native `element.querySelector()` method to fix #4
+
 ### v1.3.0
 
 - added double quotes to support #2

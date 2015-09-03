@@ -4,29 +4,42 @@ describe('', function() {
 
   var $compile;
   var scope;
-  var markup = '<update-meta http-equiv="Content-Type" content="test"></update-meta>';
 
   beforeEach(module('updateMeta'));
 
-  beforeEach(inject(function(_$compile_, _$rootScope_){
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$document_){
     $compile = _$compile_;
     scope = _$rootScope_.$new();
   }));
 
-  // This does not seem to work in the context of the
-  // Karma test runner.
-  // We should figure out a way to test this.
-  // Works fine in real browser though.
-
+  /**
+   * For some reason this does not work as expected in Karma
+   */
   /*
-  it('should handle charset correctly', function(){
-    var el = $compile(markup)(scope);
-    var metas = document.getElementsByTagName('meta');
-    angular.forEach(metas, function(meta){
-      if(meta.getAttribute('http-equiv') === "Content-Type"){
-        expect(meta.getAttribute('content')).to.equal('test');
-      }
-    });
+  it('should process meta charset correctly', function(){
+    var markup ='<html><head>';
+    markup += '<meta charset="utf-8" />';
+    markup += '</head></html>';
+    var $elBefore = $compile(markup)(scope);
+    var elBefore = $elBefore[0];
+    var actualValueBefore = elBefore.getAttribute('charset');
+    var expectedValueBefore = 'utf-8';
+
+    expect(actualValueBefore).to.equal(expectedValueBefore);
+    console.log(elBefore);
+
+    markup ='<html><head>';
+    markup += '<meta charset="utf-8" />';
+    markup += '</head><body>';
+    markup += '<update-meta charset="ISO-8859-1"></update-meta>'
+    markup += '</body></html>';
+    var $elAfter = $compile(markup)(scope);
+    var elAfter = $elAfter[0];
+    var actualValueAfter = elAfter.getAttribute('charset');
+    var expectedValueAfter = 'ISO-8859-1';
+
+    expect(actualValueAfter).to.equal(expectedValueAfter);
+    console.log($elAfter);
   });
   */
 
