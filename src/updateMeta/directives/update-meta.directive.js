@@ -15,7 +15,6 @@
       }
       var el = document.querySelector(selector);
       if(el && el.setAttribute){
-        $log.debug('updateMeta - set attribute ' + attributeName + ' of ' + selector + ' to ' + attributeValue);
         el.setAttribute(attributeName, attributeValue);
       }
     }
@@ -47,14 +46,12 @@
 
         scope.$watch('content', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
-            $log.debug('[updateMeta]: scope.content changed - oldValue: "' + oldValue + '", newValue: "' + newValue + '"');
             updateAttribute(selector, 'content', scope.content);
           }
         });
 
         scope.$watch('charset', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
-            $log.debug('[updateMeta]: scope.charset changed - oldValue: ' + oldValue + ', newValue: ' + newValue + '"');
             updateAttribute('meta[charset]', 'charset', scope.charset);
           }
         });
@@ -62,12 +59,8 @@
     };
   }
 
-  // Inject dependencies
-  UpdateMetaDirective.$inject = ['$log'];
-
   // Export
   angular
     .module('updateMeta')
     .directive('updateMeta', UpdateMetaDirective);
-
 })();
