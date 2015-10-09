@@ -31,27 +31,33 @@
         property: '@'
       },
       link: function(scope, iElem, iAttrs){
+        var selector;
 
-        if(scope.name && scope.content){
-          updateAttribute('meta[name="' + scope.name + '"]', 'content', scope.content);
-          return;
+        if(scope.name) {
+          selector = 'meta[name="' + scope.name + '"]';
         }
 
-        if(scope.httpEquiv && scope.content){
-          updateAttribute('meta[http-equiv="' + scope.httpEquiv + '"]', 'content', scope.content);
-          return;
+        if(scope.httpEquiv) {
+          selector = 'meta[http-equiv="' + scope.httpEquiv + '"]';
         }
 
-        if(scope.property && scope.content){
-          updateAttribute('meta[property="' + scope.property + '"]', 'content', scope.content);
-          return;
+        if(scope.property) {
+          selector = 'meta[property="' + scope.property + '"]';
         }
 
-        if(scope.charset){
-          updateAttribute('meta[charset]', 'charset', scope.charset);
-          return;
-        }
+        scope.$watch('content', function (newValue, oldValue) {
+          if (typeof newValue !== 'undefined') {
+            $log.debug('[updateMeta]: scope.content changed - oldValue: "' + oldValue + '", newValue: "' + newValue + '"');
+            updateAttribute(selector, 'content', scope.content);
+          }
+        });
 
+        scope.$watch('charset', function (newValue, oldValue) {
+          if (typeof newValue !== 'undefined') {
+            $log.debug('[updateMeta]: scope.charset changed - oldValue: ' + oldValue + ', newValue: ' + newValue + '"');
+            updateAttribute('meta[charset]', 'charset', scope.charset);
+          }
+        });
       }
     };
   }
