@@ -44,12 +44,14 @@
           selector = 'meta[property="' + scope.property + '"]';
         }
 
+        // watch the content parameter and set the changing value as needed
         scope.$watch('content', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
             updateAttribute(selector, 'content', scope.content);
           }
         });
 
+        // watch the charset parameter and set it as needed
         scope.$watch('charset', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
             updateAttribute('meta[charset]', 'charset', scope.charset);
