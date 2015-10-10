@@ -14,14 +14,21 @@ angular.module('updateMeta', []);
    *
    * @constructor
    */
-  function UpdateMetaDirective($log){
+  function UpdateMetaDirective($log) {
 
-    function updateAttribute(selector, attributeName, attributeValue){
-      if(!document){
+    function updateAttribute(selector, attributeName, attributeValue) {
+      if(!document) {
+        $log.error('updateMeta: document is not available!');
         return;
       }
+
+      if (!selector) {
+        $log.error('updateMeta: Either of "name", "httpEquiv", "property" or "charset" must be provided!');
+        return;
+      }
+
       var el = document.querySelector(selector);
-      if(el && el.setAttribute){
+      if (el && el.setAttribute) {
         el.setAttribute(attributeName, attributeValue);
       }
     }
@@ -36,7 +43,7 @@ angular.module('updateMeta', []);
         scheme: '@',
         property: '@'
       },
-      link: function(scope, iElem, iAttrs){
+      link: function(scope, iElem, iAttrs) {
         var selector;
 
         if(scope.name) {
@@ -51,12 +58,14 @@ angular.module('updateMeta', []);
           selector = 'meta[property="' + scope.property + '"]';
         }
 
+        // watch the content parameter and set the changing value as needed
         scope.$watch('content', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
             updateAttribute(selector, 'content', scope.content);
           }
         });
 
+        // watch the charset parameter and set it as needed
         scope.$watch('charset', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
             updateAttribute('meta[charset]', 'charset', scope.charset);
@@ -65,6 +74,9 @@ angular.module('updateMeta', []);
       }
     };
   }
+
+  // Inject dependencies
+  UpdateMetaDirective.$inject = ['$log'];
 
   // Export
   angular

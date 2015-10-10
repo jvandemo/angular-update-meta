@@ -7,14 +7,21 @@
    *
    * @constructor
    */
-  function UpdateMetaDirective($log){
+  function UpdateMetaDirective($log) {
 
-    function updateAttribute(selector, attributeName, attributeValue){
-      if(!document){
+    function updateAttribute(selector, attributeName, attributeValue) {
+      if(!document) {
+        $log.error('updateMeta: document is not available!');
         return;
       }
+
+      if (!selector) {
+        $log.error('updateMeta: Either of "name", "httpEquiv", "property" or "charset" must be provided!');
+        return;
+      }
+
       var el = document.querySelector(selector);
-      if(el && el.setAttribute){
+      if (el && el.setAttribute) {
         el.setAttribute(attributeName, attributeValue);
       }
     }
@@ -29,7 +36,7 @@
         scheme: '@',
         property: '@'
       },
-      link: function(scope, iElem, iAttrs){
+      link: function(scope, iElem, iAttrs) {
         var selector;
 
         if(scope.name) {
@@ -60,6 +67,9 @@
       }
     };
   }
+
+  // Inject dependencies
+  UpdateMetaDirective.$inject = ['$log'];
 
   // Export
   angular
