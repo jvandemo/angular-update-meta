@@ -6,14 +6,22 @@
   <meta http-equiv="Content-Language" content="en" />
   <meta name="description" content="Application wide description" />
   <meta property="og:title" content="The Rock" />
+  <meta property="dynamicMeta" content="" />
   <script>
-    angular.module('app', ['updateMeta']);
+    var ngModule = angular.module('app', ['updateMeta']);
+    ngModule.controller('AppController', function($scope, $timeout){
+      $scope.dynamicMeta = "Initial value";
+      $timeout(function(){
+        $scope.dynamicMeta = "Value updated by timeout after 5 seconds";
+      }, 5000);
+    });
   </script>
 </head>
-<body>
+<body ng-controller="AppController">
   <update-meta charset="ISO-8859-1"></update-meta>
   <update-meta http-equiv="Content-Language" content="es"></update-meta>
   <update-meta name="description" content="A page specific description"></update-meta>
   <update-meta property="og:title" content="Minions"></update-meta>
+  <update-meta property="dynamicMeta" content="{{ dynamicMeta }}"></update-meta>
 </body>
 </html>
