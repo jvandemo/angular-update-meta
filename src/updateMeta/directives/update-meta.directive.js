@@ -7,15 +7,21 @@
    *
    * @constructor
    */
-  function UpdateMetaDirective($log){
+  function UpdateMetaDirective($log) {
 
-    function updateAttribute(selector, attributeName, attributeValue){
-      if(!document){
+    function updateAttribute(selector, attributeName, attributeValue) {
+      if(!document) {
+        $log.error('updateMeta: document is not available!');
         return;
       }
+
+      if (!selector) {
+        $log.error('updateMeta: Either of "name", "httpEquiv", "property" or "charset" must be provided!');
+        return;
+      }
+
       var el = document.querySelector(selector);
-      if(el && el.setAttribute){
-        $log.debug('updateMeta - set attribute ' + attributeName + ' of ' + selector + ' to ' + attributeValue);
+      if (el && el.setAttribute) {
         el.setAttribute(attributeName, attributeValue);
       }
     }
@@ -30,28 +36,34 @@
         scheme: '@',
         property: '@'
       },
-      link: function(scope, iElem, iAttrs){
+      link: function(scope, iElem, iAttrs) {
+        var selector;
 
-        if(scope.name && scope.content){
-          updateAttribute('meta[name="' + scope.name + '"]', 'content', scope.content);
-          return;
+        if(scope.name) {
+          selector = 'meta[name="' + scope.name + '"]';
         }
 
-        if(scope.httpEquiv && scope.content){
-          updateAttribute('meta[http-equiv="' + scope.httpEquiv + '"]', 'content', scope.content);
-          return;
+        if(scope.httpEquiv) {
+          selector = 'meta[http-equiv="' + scope.httpEquiv + '"]';
         }
 
-        if(scope.property && scope.content){
-          updateAttribute('meta[property="' + scope.property + '"]', 'content', scope.content);
-          return;
+        if(scope.property) {
+          selector = 'meta[property="' + scope.property + '"]';
         }
 
-        if(scope.charset){
-          updateAttribute('meta[charset]', 'charset', scope.charset);
-          return;
-        }
+        // watch the content parameter and set the changing value as needed
+        scope.$watch('content', function (newValue, oldValue) {
+          if (typeof newValue !== 'undefined') {
+            updateAttribute(selector, 'content', scope.content);
+          }
+        });
 
+        // watch the charset parameter and set it as needed
+        scope.$watch('charset', function (newValue, oldValue) {
+          if (typeof newValue !== 'undefined') {
+            updateAttribute('meta[charset]', 'charset', scope.charset);
+          }
+        });
       }
     };
   }
@@ -63,5 +75,4 @@
   angular
     .module('updateMeta')
     .directive('updateMeta', UpdateMetaDirective);
-
 })();
