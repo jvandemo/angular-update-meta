@@ -74,6 +74,16 @@ Whenever an `update-meta` element is processed, the original `meta` in the head 
 
 This allows you to dynamically set the `meta` element values with values from within your markup and child states.
 
+### Expressions
+
+Dynamic AngularJS expressions are supported too:
+
+```xml
+<update-meta property="og:title" content="{{ title }}"></update-meta>
+```
+
+In the example above, the `og:title` is automatically updated whenever `title` changes.
+
 ### Prerender.io
 
 Prerender.io will grab the updated values and store them in your page snapshots so they are optimized for SEO purposes.
@@ -97,6 +107,12 @@ $ gulp test
 ```
 
 ## Change log
+
+### v1.6.0
+
+- added dynamic tag support
+- updated documentation
+- updated example
 
 ### v1.5.1
 
