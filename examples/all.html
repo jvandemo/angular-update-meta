@@ -2,6 +2,7 @@
 <head>
   <script src="../bower/angular/angular.js"></script>
   <script src="../dist/update-meta.js"></script>
+  <title>Initial static title</title>
   <meta charset="utf-8" />
   <meta http-equiv="Content-Language" content="en" />
   <meta name="description" content="Application wide description" />
@@ -11,8 +12,10 @@
     var ngModule = angular.module('app', ['updateMeta']);
     ngModule.controller('AppController', function($scope, $timeout){
       $scope.dynamicMeta = "Initial value";
+      $scope.dynamicTitle = "Initial dynamic value";
       $timeout(function(){
         $scope.dynamicMeta = "Value updated by timeout after 5 seconds";
+        $scope.dynamicTitle = "Title updated by timeout after 5 seconds";
       }, 5000);
     });
   </script>
@@ -23,5 +26,6 @@
   <update-meta name="description" content="A page specific description"></update-meta>
   <update-meta property="og:title" content="Minions"></update-meta>
   <update-meta property="dynamicMeta" content="{{ dynamicMeta }}"></update-meta>
+  <update-title title="{{ dynamicTitle }}"></update-title>
 </body>
 </html>
