@@ -1,6 +1,6 @@
 # Update meta tags in AngularJS
 
-Dynamically update meta tags for SEO purposes in your AngularJS application. 
+Dynamically update meta tags and document title for SEO purposes in your AngularJS application. 
 
 [![Build Status](https://travis-ci.org/jvandemo/angular-update-meta.svg?branch=master)](https://travis-ci.org/jvandemo/angular-update-meta)
 
@@ -8,6 +8,7 @@ Dynamically update meta tags for SEO purposes in your AngularJS application.
 - uses original meta syntax
 - supports prerender.io for SEO purposes
 - supports [Open Graph protocol](http://ogp.me/) meta elements
+- update your document title dynamically
 - update your meta tags depending on the state your application is in
 - no additional scripting required, works out-of-the-box!
 
@@ -30,6 +31,7 @@ Suppose you have the following markup in your template:
 ```xml
 <html>
   <head>
+    <title>Website title</title>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Language" content="en" />
     <meta name="description" content="Application wide description" />
@@ -48,6 +50,7 @@ Now you can use the following markup in your view(s):
 <update-meta http-equiv="Content-Language" content="es"></update-meta>
 <update-meta name="description" content="A page specific description"></update-meta>
 <update-meta property="og:title" content="Minions"></update-meta>
+<update-title title="A new title"></update-title>
 ```
 
 So the head is updated to:
@@ -55,6 +58,7 @@ So the head is updated to:
 ```xml
 <html>
   <head>
+    <title>A new title</title>
     <meta charset="ISO-8859-1" />
     <meta http-equiv="Content-Language" content="es" />
     <meta name="description" content="A page specific description" />
@@ -107,6 +111,12 @@ $ gulp test
 ```
 
 ## Change log
+
+### v1.7.0
+
+- added update-title directive
+- updated documentation
+- updated example
 
 ### v1.6.0
 
