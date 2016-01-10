@@ -1,0 +1,37 @@
+<html ng-app="app">
+<head>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../bower/angular-route/angular-route.js"></script>
+  <script src="../bower/angular-ui/angular.js"></script>
+  <script src="../dist/update-meta.js"></script>
+  <title>Initial static title</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Language" content="en" />
+  <meta name="description" content="Application wide description" />
+  <meta property="og:title" content="The Rock" />
+  <meta property="dynamicMeta" content="" />
+  <script>
+    var ngModule = angular.module('app', ['ngRoute', 'updateMeta'])
+		.config(function($routeProvider) {
+			$routeProvider
+				.when("/view1", {templateUrl: "/view1.html"})
+				.when("/view2", {templateUrl: "/view2.html"})
+				.otherwise({redirectTo: "/view1"});
+		});
+  </script>
+</head>
+<body>
+  <script type="text/ng-template" id="/view1.html">
+		<update-meta title="View 1 title"></update-meta>
+		Some content of view 1
+	</script>
+  <script type="text/ng-template" id="/view2.html">
+		<update-meta title="View 2 title"></update-meta>
+		Some content of view 2
+	</script>
+	<div ng-view></div>
+	<a href="#/view1">Set title to: "View 1 title"</a>
+	</br>
+	<a href="#/view2">Set title to: "View 2 title"</a>
+</body>
+</html>

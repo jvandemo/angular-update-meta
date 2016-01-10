@@ -1,6 +1,6 @@
 {
   "name": "angular-update-meta",
-  "version": "1.6.0",
+  "version": "1.7.1",
   "authors": [
     {
       "name": "Jurgen Van de Moere",
@@ -29,7 +29,9 @@
     "angular": "~1.2.21"
   },
   "devDependencies": {
+    "angular-route": "~1.2.21",
     "angular-mocks": "~1.2.21",
-    "angular-scenario": "~1.2.21"
+    "angular-scenario": "~1.2.21",
+    "angular-ui-router": "~0.2.15"
   }
 }

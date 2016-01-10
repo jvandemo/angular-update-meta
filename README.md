@@ -46,7 +46,7 @@ Suppose you have the following markup in your template:
 Now you can use the following markup in your view(s):
  
 ```xml
-<update-title title="A new title"></update-title>
+<update-meta title="A new title"></update-meta>
 <update-meta charset="ISO-8859-1"></update-meta>
 <update-meta http-equiv="Content-Language" content="es"></update-meta>
 <update-meta name="description" content="A page specific description"></update-meta>
@@ -111,6 +111,12 @@ $ gulp test
 ```
 
 ## Change log
+
+### v1.7.1
+
+- added new exemple
+- removed update-title directive use update-meta insted
+- improved code redability
 
 ### v1.7.0
 
