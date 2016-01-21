@@ -112,6 +112,10 @@ $ gulp test
 
 ## Change log
 
+### v1.7.1
+
+- fix bower dependencies
+
 ### v1.7.0
 
 - added update-title directive
