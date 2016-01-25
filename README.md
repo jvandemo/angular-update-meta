@@ -112,6 +112,10 @@ $ gulp test
 
 ## Change log
 
+### 1.8.0
+
+- added examples for use with ngRoute and ui-router
+
 ### v1.7.1
 
 - fix bower dependencies
