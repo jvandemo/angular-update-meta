@@ -1,0 +1,41 @@
+<html ng-app="app">
+<head>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../bower/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="../bower/angular-ui/angular.js"></script>
+  <script src="../dist/update-meta.js"></script>
+  <title>Initial static title</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Language" content="en" />
+  <meta name="description" content="Application wide description" />
+  <meta property="og:title" content="The Rock" />
+  <meta property="dynamicMeta" content="" />
+  <script>
+    var ngModule = angular.module('app', ['ui.router', 'updateMeta'])
+		.config(function ($stateProvider,   $urlRouterProvider) {
+			$urlRouterProvider.otherwise('/view1');
+			$stateProvider
+				.state("view1", {url: '/view1', templateUrl: "/view1.html"})
+				.state("view2", {url: '/view2', templateUrl: "/view2.html"})
+		});
+  </script>
+</head>
+<body>
+  <script type="text/ng-template" id="/view1.html">
+		<main>
+			<update-meta title="View 1 title"></update-meta>
+			Some content of view 1
+		</main>
+	</script>
+  <script type="text/ng-template" id="/view2.html">
+		<main>
+			<update-meta title="View 2 title"></update-meta>
+			Some content of view 2
+		</main>
+	</script>
+	<div ui-view></div>
+	<a ui-sref="view1">Set title to: "View 1 title"</a>
+	</br>
+	<a ui-sref="view2">Set title to: "View 2 title"</a>
+</body>
+</html>
