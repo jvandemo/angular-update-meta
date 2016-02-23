@@ -8,6 +8,7 @@ Dynamically update meta tags and document title for SEO purposes in your Angular
 - uses original meta syntax
 - supports prerender.io for SEO purposes
 - supports [Open Graph protocol](http://ogp.me/) meta elements
+- supports [schema.org protocol](http://schema.org/) meta elements
 - update your document title dynamically
 - update your meta tags depending on the state your application is in
 - no additional scripting required, works out-of-the-box!
@@ -36,6 +37,7 @@ Suppose you have the following markup in your template:
     <meta http-equiv="Content-Language" content="en" />
     <meta name="description" content="Application wide description" />
     <meta property="og:title" content="The Rock" />
+    <meta itemprop="description" content="Application wide description for Schema.org (Google+ uses this)">
   </head>
   <body>
     ...
@@ -51,6 +53,7 @@ Now you can use the following markup in your view(s):
 <update-meta http-equiv="Content-Language" content="es"></update-meta>
 <update-meta name="description" content="A page specific description"></update-meta>
 <update-meta property="og:title" content="Minions"></update-meta>
+<update-meta itemprop="description" content="A page specific description"></update-meta>
 ```
 
 So the head is updated to:
@@ -63,6 +66,7 @@ So the head is updated to:
     <meta http-equiv="Content-Language" content="es" />
     <meta name="description" content="A page specific description" />
     <meta property="og:title" content="Minions" />
+    <meta itemprop="description" content="A page specific description">
   </head>
   <body>
     ...
