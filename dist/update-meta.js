@@ -41,7 +41,8 @@ angular.module('updateMeta', []);
         content: '@',
         httpEquiv: '@',
         scheme: '@',
-        property: '@'
+        property: '@',
+        itemprop: '@'
       },
       link: function(scope, iElem, iAttrs) {
         var selector;
@@ -56,6 +57,10 @@ angular.module('updateMeta', []);
 
         if(scope.property) {
           selector = 'meta[property="' + scope.property + '"]';
+        }
+
+        if(scope.itemprop) {
+          selector = 'meta[itemprop="' + scope.itemprop + '"]';
         }
 
         // watch the content parameter and set the changing value as needed
