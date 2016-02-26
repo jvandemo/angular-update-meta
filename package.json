@@ -1,6 +1,7 @@
 {
   "name": "angular-update-meta",
   "version": "1.9.0",
+  "main": "dist/update-meta.js",
   "author": {
     "name": "Jurgen Van de Moere",
     "email": "jurgen.van.de.moere@gmail.com"
