@@ -10,6 +10,7 @@
   <meta name="description" content="Application wide description" />
   <meta property="og:title" content="The Rock" />
   <meta property="dynamicMeta" content="" />
+  <meta itemprop="description" content="Application wide itemprop for Schema.org (Google+ uses this)">
   <script>
     var ngModule = angular.module('app', ['ngRoute', 'updateMeta'])
 		.config(function($routeProvider) {
@@ -23,10 +24,12 @@
 <body>
   <script type="text/ng-template" id="/view1.html">
 		<update-meta title="View 1 title"></update-meta>
+    <update-meta itemprop="description" content="A page 1 specific itemprop"></update-meta>
 		Some content of view 1
 	</script>
   <script type="text/ng-template" id="/view2.html">
 		<update-meta title="View 2 title"></update-meta>
+    <update-meta itemprop="description" content="A page 2 specific itemprop"></update-meta>
 		Some content of view 2
 	</script>
 	<div ng-view></div>

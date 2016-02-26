@@ -8,6 +8,7 @@
   <meta name="description" content="Application wide description" />
   <meta property="og:title" content="The Rock" />
   <meta property="dynamicMeta" content="" />
+  <meta itemprop="description" content="Application wide itemprop for Schema.org (Google+ uses this)">
   <script>
     var ngModule = angular.module('app', ['updateMeta']);
     ngModule.controller('AppController', function($scope, $timeout){
@@ -27,5 +28,6 @@
   <update-meta property="og:title" content="Minions"></update-meta>
   <update-meta property="dynamicMeta" content="{{ dynamicMeta }}"></update-meta>
   <update-title title="{{ dynamicTitle }}"></update-title>
+  <update-meta itemprop="description" content="A page specific itemprop"></update-meta>
 </body>
 </html>
