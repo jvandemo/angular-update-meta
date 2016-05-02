@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     sourceFiles = [
       'src/updateMeta/updateMeta.js',
       'src/updateMeta/directives/**/*.js',
+      'src/updateMeta/services/**/*.js'
     ];
 
 gulp.task('build', function() {

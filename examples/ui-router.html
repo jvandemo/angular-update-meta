@@ -11,6 +11,7 @@
   <meta property="og:title" content="The Rock" />
   <meta property="dynamicMeta" content="" />
   <meta itemprop="description" content="Application wide itemprop for Schema.org (Google+ uses this)">
+  <link rel="test" />
   <script>
     var ngModule = angular.module('app', ['ui.router', 'updateMeta'])
 		.config(function ($stateProvider,   $urlRouterProvider) {
@@ -24,6 +25,7 @@
 <body>
   <script type="text/ng-template" id="/view1.html">
 		<main>
+      <update-link rel="test" href="http://example.com/1"></update-link>
 			<update-meta title="View 1 title"></update-meta>
       <update-meta itemprop="description" content="A page 1 specific itemprop"></update-meta>
 			Some content of view 1
@@ -31,8 +33,10 @@
 	</script>
   <script type="text/ng-template" id="/view2.html">
 		<main>
+      <update-link rel="test" href="http://example.com/2"></update-link>
 			<update-meta title="View 2 title"></update-meta>
       <update-meta itemprop="description" content="A page 2 specific itemprop"></update-meta>
+
 			Some content of view 2
 		</main>
 	</script>
