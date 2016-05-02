@@ -28,6 +28,9 @@
     }
   }
 
+  // Inject dependencies
+  UpdateMetaDirective.$inject = ['$log'];
+
   angular
     .module('updateMeta')
     .factory('updateAttribute', UpdateAttributeService);
