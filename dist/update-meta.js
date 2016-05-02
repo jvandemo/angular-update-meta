@@ -178,7 +178,7 @@ angular.module('updateMeta', []);
   }
 
   // Inject dependencies
-  UpdateMetaDirective.$inject = ['$log'];
+  UpdateAttributeService.$inject = ['$log'];
 
   angular
     .module('updateMeta')
