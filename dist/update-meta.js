@@ -66,7 +66,6 @@ angular.module('updateMeta', []);
       },
       link: function(scope, iElem, iAttrs) {
         var selector;
-        $log.log('hi there')
 
         if(scope.name) {
           selector = 'meta[name="' + scope.name + '"]';
@@ -177,6 +176,9 @@ angular.module('updateMeta', []);
       update: update
     }
   }
+
+  // Inject dependencies
+  UpdateMetaDirective.$inject = ['$log'];
 
   angular
     .module('updateMeta')
