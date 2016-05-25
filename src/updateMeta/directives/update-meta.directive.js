@@ -7,7 +7,7 @@
    *
    * @constructor
    */
-  function UpdateMetaDirective($log) {
+  function UpdateMetaDirective($log, $location) {
 
     function updateAttribute(selector, attributeName, attributeValue) {
       if(!document) {
@@ -50,6 +50,9 @@
 
         if(scope.property) {
           selector = 'meta[property="' + scope.property + '"]';
+          if (scope.property == 'og:url' && !scope.content){
+            scope.content = $location.absUrl();
+          }
         }
 
         if(scope.itemprop) {
@@ -74,7 +77,7 @@
   }
 
   // Inject dependencies
-  UpdateMetaDirective.$inject = ['$log'];
+  UpdateMetaDirective.$inject = ['$log', '$location'];
 
   // Export
   angular
