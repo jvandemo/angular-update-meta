@@ -13,6 +13,8 @@ Dynamically update meta tags and document title for SEO purposes in your Angular
 - update your meta tags depending on the state your application is in
 - no additional scripting required, works out-of-the-box!
 
+View [example plunk right here](http://plnkr.co/edit/YgvUohn0zUZUOSroPyWk?p=preview).
+
 ## Usage
 
 First install the module using bower:
@@ -39,7 +41,7 @@ Suppose you have the following markup in your template:
     <meta property="og:title" content="The Rock" />
     <meta itemprop="description" content="Application wide description for Schema.org (Google+ uses this)">
   </head>
-  <body>
+  <body ng-app="yourApp">
     ...
   </body>
 </html>
@@ -68,7 +70,7 @@ So the head is updated to:
     <meta property="og:title" content="Minions" />
     <meta itemprop="description" content="A page specific itemprop description">
   </head>
-  <body>
+  <body ng-app="yourApp">
     ...
   </body>
 </html>
