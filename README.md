@@ -1,6 +1,6 @@
 # Update meta tags in AngularJS
 
-Dynamically update meta tags and document title for SEO purposes in your AngularJS application. 
+Dynamically update meta tags and document title for SEO purposes in your AngularJS application.
 
 [![Build Status](https://travis-ci.org/jvandemo/angular-update-meta.svg?branch=master)](https://travis-ci.org/jvandemo/angular-update-meta)
 
@@ -16,7 +16,7 @@ Dynamically update meta tags and document title for SEO purposes in your Angular
 ## Usage
 
 First install the module using bower:
- 
+
 ```bash
 $ bower install angular-update-meta
 ```
@@ -46,7 +46,7 @@ Suppose you have the following markup in your template:
 ```
 
 Now you can use the following markup in your view(s):
- 
+
 ```xml
 <update-title title="A new title"></update-title>
 <update-meta charset="ISO-8859-1"></update-meta>
@@ -81,6 +81,42 @@ If the meta element does not exist yet, it is **NOT** added, so make sure they e
 Whenever an `update-meta` element is processed, the original `meta` in the head is updated with the new value.
 
 This allows you to dynamically set the `meta` element values with values from within your markup and child states.
+
+
+You can also update link tags. If you have the following markup in your template:
+
+```xml
+<html>
+  <head>
+    <link rel="stylesheet" href="http://example.com" />
+    <link rel="alternate" href="http://example.com/another" hreflang="" />
+    <link rel="alternate" href="http://example.com/another" id="test" />
+  </head>
+</html>
+```
+
+and you have this in your views:
+
+```xml
+<update-link rel="stylesheet" href="http://example.com/updated"></update-link>
+<update-link rel="alternate" href="http://example.com/another" hreflang="es"></update-link>
+<update-link rel="alternate" href="http://example.com/another-updated" id="test"></update-link>
+```
+
+you'll end up with:
+
+```xml
+<html>
+  <head>
+    <link rel="stylesheet" href="http://example.com/updated" />
+    <link rel="alternate" href="http://example.com/another" hreflang="es" />
+    <link rel="alternate" href="http://example.com/another-updated" id="test" />
+  </head>
+</html>
+```
+
+A `rel` and a `href` attribute must be supplied to the directive. The directive will try querying the DOM using the `rel` and `href` attributes, along with any other supported attributes (`id`, `charset`, `crossorigin`, `hreflang`, `integrity`, `media`, `methods`, `referrerpolicy`, `sizes`, `target`, `title`, `type`).
+If there are different attributes supplied to a directive, the correct element will be targeted even if the element uses the same `id` as another element.
 
 ### Expressions
 
