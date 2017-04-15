@@ -9,6 +9,7 @@ Dynamically update meta tags and document title for SEO purposes in your Angular
 - supports prerender.io for SEO purposes
 - supports [Open Graph protocol](http://ogp.me/) meta elements
 - supports [schema.org protocol](http://schema.org/) meta elements
+- supports link elements
 - update your document title dynamically
 - update your meta tags depending on the state your application is in
 - no additional scripting required, works out-of-the-box!
@@ -84,7 +85,6 @@ Whenever an `update-meta` element is processed, the original `meta` in the head 
 
 This allows you to dynamically set the `meta` element values with values from within your markup and child states.
 
-
 You can also update link tags. If you have the following markup in your template:
 
 ```xml
@@ -97,7 +97,7 @@ You can also update link tags. If you have the following markup in your template
 </html>
 ```
 
-and you have this in your views:
+and you have the following markup in your view:
 
 ```xml
 <update-link rel="stylesheet" href="http://example.com/updated"></update-link>
@@ -105,7 +105,7 @@ and you have this in your views:
 <update-link rel="alternate" href="http://example.com/another-updated" id="test"></update-link>
 ```
 
-you'll end up with:
+then the head will be updated to:
 
 ```xml
 <html>
@@ -118,7 +118,8 @@ you'll end up with:
 ```
 
 A `rel` and a `href` attribute must be supplied to the directive. The directive will try querying the DOM using the `rel` and `href` attributes, along with any other supported attributes (`id`, `charset`, `crossorigin`, `hreflang`, `integrity`, `media`, `methods`, `referrerpolicy`, `sizes`, `target`, `title`, `type`).
-If there are different attributes supplied to a directive, the correct element will be targeted even if the element uses the same `id` as another element.
+
+If you supply different attributes to the directive, the correct element will be targeted, even if the element uses the same `id` as another element.
 
 ### Expressions
 
@@ -153,6 +154,10 @@ $ gulp test
 ```
 
 ## Change log
+
+### 2.0.0
+
+- added support for link elements [#18](https://github.com/jvandemo/angular-update-meta/pull/18)
 
 ### 1.9.0
 
