@@ -7,24 +7,7 @@
    *
    * @constructor
    */
-  function UpdateMetaDirective($log) {
-
-    function updateAttribute(selector, attributeName, attributeValue) {
-      if(!document) {
-        $log.error('updateMeta: document is not available!');
-        return;
-      }
-
-      if (!selector) {
-        $log.error('updateMeta: Either of "name", "httpEquiv", "property" or "charset" must be provided!');
-        return;
-      }
-
-      var el = document.querySelector(selector);
-      if (el && el.setAttribute) {
-        el.setAttribute(attributeName, attributeValue);
-      }
-    }
+  function UpdateMetaDirective($log, updateAttribute) {
 
     return {
       restrict: 'E',
@@ -59,14 +42,14 @@
         // watch the content parameter and set the changing value as needed
         scope.$watch('content', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
-            updateAttribute(selector, 'content', scope.content);
+            updateAttribute.update(selector, 'content', scope.content);
           }
         });
 
         // watch the charset parameter and set it as needed
         scope.$watch('charset', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
-            updateAttribute('meta[charset]', 'charset', scope.charset);
+            updateAttribute.update('meta[charset]', 'charset', scope.charset);
           }
         });
       }
@@ -74,7 +57,7 @@
   }
 
   // Inject dependencies
-  UpdateMetaDirective.$inject = ['$log'];
+  UpdateMetaDirective.$inject = ['$log', 'updateAttribute'];
 
   // Export
   angular

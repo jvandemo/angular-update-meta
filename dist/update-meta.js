@@ -8,30 +8,97 @@ angular.module('updateMeta', []);
 (function(){
 
   /**
+   * Update a link tag dynamically
+   *
+   * @constructor
+   */
+  function UpdateLinkDirective($log, updateAttribute) {
+
+    var supportedAttributes =
+      [
+        'href',
+        'charset',
+        'crossorigin',
+        'hreflang',
+        'integrity',
+        'media',
+        'methods',
+        'referrerpolicy',
+        'sizes',
+        'target',
+        'title',
+        'type'
+      ];
+
+      var queryAttributes = ['id', 'rel'];
+
+      function buildAttributeFilter(scope, attribute) {
+        return '[' + attribute + '="' + scope[attribute] + '"]';
+      };
+
+      function buildQuery(scope, attributes) {
+        return attributes.filter(function(attribute) {
+          return scope[attribute];
+        }).map(function(attribute) {
+          return buildAttributeFilter(scope, attribute);
+        }).join('');
+      };
+
+    return {
+      restrict: 'E',
+      scope: {
+        rel: '@',
+        href: '@',
+        id: '@?',
+        charset: '@?',
+        crossorigin: '@?',
+        hreflang: '@?',
+        integrity: '@?',
+        media: '@?',
+        methods: '@?',
+        referrerpolicy: '@?',
+        sizes: '@?',
+        target: '@?',
+        title: '@?',
+        type: '@?'
+      },
+      link: function(scope, iElem, iAttrs) {
+
+        var selector = 'link' + buildQuery(scope, supportedAttributes);
+
+        // Watch only desired attributes
+        supportedAttributes.filter(function(attribute) {
+          return scope[attribute];
+        }).forEach(function(attribute) {
+          scope.$watch(attribute, function(newValue, oldValue) {
+            if (typeof newValue !== 'undefined') {
+              updateAttribute.update(selector, attribute, scope[attribute])
+            }
+          });
+        });
+      }
+    };
+  }
+
+  // Inject dependencies
+  UpdateLinkDirective.$inject = ['$log', 'updateAttribute'];
+
+  // Export
+  angular
+    .module('updateMeta')
+    .directive('updateLink', UpdateLinkDirective);
+})();
+
+(function(){
+
+  /**
    * Update a meta tag dynamically
    *
    * See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
    *
    * @constructor
    */
-  function UpdateMetaDirective($log) {
-
-    function updateAttribute(selector, attributeName, attributeValue) {
-      if(!document) {
-        $log.error('updateMeta: document is not available!');
-        return;
-      }
-
-      if (!selector) {
-        $log.error('updateMeta: Either of "name", "httpEquiv", "property" or "charset" must be provided!');
-        return;
-      }
-
-      var el = document.querySelector(selector);
-      if (el && el.setAttribute) {
-        el.setAttribute(attributeName, attributeValue);
-      }
-    }
+  function UpdateMetaDirective($log, updateAttribute) {
 
     return {
       restrict: 'E',
@@ -66,14 +133,14 @@ angular.module('updateMeta', []);
         // watch the content parameter and set the changing value as needed
         scope.$watch('content', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
-            updateAttribute(selector, 'content', scope.content);
+            updateAttribute.update(selector, 'content', scope.content);
           }
         });
 
         // watch the charset parameter and set it as needed
         scope.$watch('charset', function (newValue, oldValue) {
           if (typeof newValue !== 'undefined') {
-            updateAttribute('meta[charset]', 'charset', scope.charset);
+            updateAttribute.update('meta[charset]', 'charset', scope.charset);
           }
         });
       }
@@ -81,7 +148,7 @@ angular.module('updateMeta', []);
   }
 
   // Inject dependencies
-  UpdateMetaDirective.$inject = ['$log'];
+  UpdateMetaDirective.$inject = ['$log', 'updateAttribute'];
 
   // Export
   angular
@@ -125,4 +192,42 @@ angular.module('updateMeta', []);
   angular
     .module('updateMeta')
     .directive('updateTitle', UpdateTitleDirective);
+})();
+
+(function(){
+
+  /**
+  * Service to update attribute
+  *
+  * @constructor
+  */
+  function UpdateAttributeService($log) {
+    function update(selector, attributeName, attributeValue) {
+      if(!document) {
+        $log.error('updateMeta: document is not available!');
+        return;
+      }
+
+      if(!selector) {
+        $log.error('updateMeta: please provide a selector');
+        return;
+      }
+
+      var el = document.querySelector(selector);
+      if (el && el.setAttribute) {
+        el.setAttribute(attributeName, attributeValue);
+      }
+    }
+
+    return {
+      update: update
+    }
+  }
+
+  // Inject dependencies
+  UpdateAttributeService.$inject = ['$log'];
+
+  angular
+    .module('updateMeta')
+    .factory('updateAttribute', UpdateAttributeService);
 })();
