@@ -137,7 +137,7 @@ Prerender.io will grab the updated values and store them in your page snapshots 
 
 This allows you to conveniently update the `meta` elements for each individual page in your AngularJS single page application and store them correctly in your Prerender page snapshots.
 
-You can preview the prerender output by using the `_escaped_fragment_=` parameter as described [in the prerender.io documentation](https://prerender.io/documentation).
+You can preview the prerender output by using the `?_escaped_fragment_=` parameter as described [in the prerender.io documentation](https://prerender.io/documentation).
 
 ## Contribute
 
