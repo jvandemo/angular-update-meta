@@ -57,7 +57,7 @@
       },
       link: function(scope, iElem, iAttrs) {
 
-        var selector = 'link' + buildQuery(scope, supportedAttributes);
+        var selector = 'link' + buildQuery(scope, queryAttributes);
 
         // Watch only desired attributes
         supportedAttributes.filter(function(attribute) {

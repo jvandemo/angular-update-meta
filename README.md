@@ -117,9 +117,7 @@ then the head will be updated to:
 </html>
 ```
 
-A `rel` and a `href` attribute must be supplied to the directive. The directive will try querying the DOM using the `rel` and `href` attributes, along with any other supported attributes (`id`, `charset`, `crossorigin`, `hreflang`, `integrity`, `media`, `methods`, `referrerpolicy`, `sizes`, `target`, `title`, `type`).
-
-If you supply different attributes to the directive, the correct element will be targeted, even if the element uses the same `id` as another element.
+A `rel` and a `href` attribute must be supplied to the directive. The directive will try querying the DOM using the `rel` and `href` attributes, and optionally an `id`. Any of the supported attributes (`id`, `charset`, `crossorigin`, `hreflang`, `integrity`, `media`, `methods`, `referrerpolicy`, `sizes`, `target`, `title`, `type`) wil be updated.
 
 ### Expressions
 
