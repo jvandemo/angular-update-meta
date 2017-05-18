@@ -153,6 +153,10 @@ $ gulp test
 
 ## Change log
 
+### 2.0.1
+
+- fix issue with link [#28](https://github.com/jvandemo/angular-update-meta/issues/28) (credits to [Kohei Hisakuni](https://github.com/khisakuni))
+
 ### 2.0.0
 
 - added support for link elements [#18](https://github.com/jvandemo/angular-update-meta/pull/18)
