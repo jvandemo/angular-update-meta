@@ -85,7 +85,7 @@ Whenever an `update-meta` element is processed, the original `meta` in the head 
 
 This allows you to dynamically set the `meta` element values with values from within your markup and child states.
 
-You can also update link tags. If you have the following markup in your template:
+You can also update link tags. If you have the following markup in your layout:
 
 ```xml
 <html>
@@ -117,7 +117,7 @@ then the head will be updated to:
 </html>
 ```
 
-A `rel` and a `href` attribute must be supplied to the directive. The directive will try querying the DOM using the `rel` and `href` attributes, and optionally an `id`. Any of the supported attributes (`id`, `charset`, `crossorigin`, `hreflang`, `integrity`, `media`, `methods`, `referrerpolicy`, `sizes`, `target`, `title`, `type`) wil be updated.
+A `rel` and a `href` attribute must be supplied to the directive. The directive will try querying the DOM using the `rel` and `href` attributes, and optionally an `id`. Any of the supported attributes (`id`, `charset`, `crossorigin`, `hreflang`, `integrity`, `media`, `methods`, `referrerpolicy`, `sizes`, `target`, `title`, `type`) will be updated.
 
 ### Expressions
 
