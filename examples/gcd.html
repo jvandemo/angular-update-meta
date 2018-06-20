@@ -1,0 +1,47 @@
+<html ng-app="app">
+
+<head>
+    <script src="../bower/angular/angular.js"></script>
+    <script src="../dist/update-meta.js"></script>
+    <title>Initial static title</title>
+    <meta charset="utf-8" />
+    <script type="application/ld+json"></script>
+    <script>
+        var ngModule = angular.module('app', ['updateMeta']);
+        ngModule.controller('AppController', function ($scope, $timeout) {
+            $scope.structuredData = {
+                "@context": "http://schema.org",
+                "@type": "Organization",
+                "url": "http://www.example.com",
+                "name": "Unlimited Ball Bearings Corp.",
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+1-401-555-1212",
+                    "contactType": "Customer service"
+                }
+            };
+            $timeout(function () {
+                $scope.structuredData = {
+                    "@context": "http://schema.org",
+                    "@type": "Organization",
+                    "url": "http://www.example.com",
+                    "name": "Some Company",
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "telephone": "+1-401-555-1212",
+                        "contactType": "Customer service"
+                    }
+                };
+            }, 5000);
+        });
+    </script>
+</head>
+
+<body ng-controller="AppController">
+
+    <update-script content="structuredData" type="application/ld+json"></update-script>
+    <p>Inspect the elements on this page using devTools to see the changes.</p>
+
+</body>
+
+</html>
