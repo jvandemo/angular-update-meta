@@ -41,6 +41,7 @@ Suppose you have the following markup in your template:
     <meta name="description" content="Application wide description" />
     <meta property="og:title" content="The Rock" />
     <meta itemprop="description" content="Application wide description for Schema.org (Google+ uses this)">
+    <script type="application/ld+json"></script>
   </head>
   <body ng-app="yourApp">
     ...
@@ -57,8 +58,23 @@ Now you can use the following markup in your view(s):
 <update-meta name="description" content="A page specific description"></update-meta>
 <update-meta property="og:title" content="Minions"></update-meta>
 <update-meta itemprop="description" content="A page specific itemprop description"></update-meta>
+<update-script content="structuredData" type="application/ld+json"></update-script>
 ```
+And if you want to use [Google Structured Data](https://developers.google.com/search/docs/guides/intro-structured-data), create an object like this in $scope:
 
+```javascript
+$scope.structuredData = {
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "http://www.example.com",
+  "name": "Unlimited Ball Bearings Corp.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-401-555-1212",
+    "contactType": "Customer service"
+  }
+};
+```
 So the head is updated to:
 
 ```xml
@@ -70,6 +86,19 @@ So the head is updated to:
     <meta name="description" content="A page specific description" />
     <meta property="og:title" content="Minions" />
     <meta itemprop="description" content="A page specific itemprop description">
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://www.example.com",
+      "name": "Unlimited Ball Bearings Corp.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-401-555-1212",
+        "contactType": "Customer service"
+      }
+    }
+    </script>
   </head>
   <body ng-app="yourApp">
     ...

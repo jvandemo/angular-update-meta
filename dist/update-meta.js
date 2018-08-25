@@ -156,6 +156,34 @@ angular.module('updateMeta', []);
     .directive('updateMeta', UpdateMetaDirective);
 })();
 
+(function () {
+  function UpdateScriptDirective($log, updateScriptContent) {
+    return {
+      restrict: 'E',
+      scope: {
+        type: '@',
+        content: '='
+      },
+      link: function (scope, iElem, iAttrs) {
+          var selector = 'script[type="' + scope.type + '"]';
+          scope.$watch('content', function (newValue, oldValue) {
+            if (typeof newValue !== 'undefined') {
+              updateScriptContent.update(selector, scope.content);
+            }
+          });
+      }
+    };
+  }
+
+  // Inject dependencies
+  UpdateScriptDirective.$inject = ['$log', 'updateScriptContent'];
+
+  // Export
+  angular
+    .module('updateMeta')
+    .directive('updateScript', UpdateScriptDirective);
+})();
+
 (function(){
 
   /**
@@ -230,4 +258,41 @@ angular.module('updateMeta', []);
   angular
     .module('updateMeta')
     .factory('updateAttribute', UpdateAttributeService);
+})();
+
+(function () {
+
+  /**
+   * Service to update script content
+   *
+   * @constructor
+   */
+    function UpdateScriptContentService($log, $sce, $filter) {
+    return {
+      update: function (selector, content) {
+          if (!document) {
+              $log.error('updateMeta: document is not available!');
+              return;
+          }
+
+          if (!selector) {
+              $log.error('updateMeta: please provide a selector');
+              return;
+          }
+
+          var element = document.querySelector(selector);
+          if(element){
+              var trustedContent = $sce.trustAsHtml($filter('json')(content));
+              element.outerHTML = '<script type="application/ld+json">' + trustedContent + '</script>';
+          }
+      }
+    };
+  }
+
+  // Inject dependencies
+    UpdateScriptContentService.$inject = ['$log', '$sce', '$filter'];
+
+  angular
+    .module('updateMeta')
+    .factory('updateScriptContent', UpdateScriptContentService);
 })();
