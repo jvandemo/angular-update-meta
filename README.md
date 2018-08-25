@@ -182,6 +182,10 @@ $ gulp test
 
 ## Change log
 
+### 2.1.0
+
+- added support for Google Structured Data (credits to [Mostafa Shaheydari](https://github.com/Pymossy))
+
 ### 2.0.1
 
 - fix issue with link [#28](https://github.com/jvandemo/angular-update-meta/issues/28) (credits to [Kohei Hisakuni](https://github.com/khisakuni))
@@ -201,7 +205,7 @@ $ gulp test
 
 ### v1.7.1
 
-- fix bower dependencies
+- fixed bower dependencies
 
 ### v1.7.0
 
